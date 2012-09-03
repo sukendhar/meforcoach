@@ -1,0 +1,47 @@
+%h1 Coach Profile
+%br 
+
+-if !@coachee_profile.nil?
+  %p
+    %b Name:
+    = @coachee_profile.name
+  %p
+    %b Age:
+    = @coachee_profile.age
+  %p
+    %b Gender:
+    = @coachee_profile.gender
+  %p
+    %b Location:
+    = @coachee_profile.location
+  %p
+    %b Phone:
+    = @coachee_profile.phone
+  %p
+    %b Timezone:
+    = @coachee_profile.timezone
+
+  %p
+    %b Relationship Status:
+    = @coachee_profile.relationship_status
+
+  %p
+    %b Available Time:
+    = @coachee_profile.available_time
+        
+  %p
+    %b Language:
+    = @coachee_profile.language
+
+  %p
+    %b Privacy Setting:
+    = @coachee_profile.privacy_setting
+
+  
+  %div
+    = link_to 'Edit', edit_coachee_profile_path(@coachee_profile)
+    = link_to 'Destroy',@coachee_profile, :confirm => 'Are you sure?', :method => :delete
+
+      
+-else
+  = link_to 'New Coachee profile', new_coachee_profile_path

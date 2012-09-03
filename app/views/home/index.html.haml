@@ -1,0 +1,12 @@
+%h3 Home
+%br
+
+-if current_user
+  %p
+    Welcome
+    =current_user.name  
+    
+-else
+  %p
+    Please login
+    = link_to  'Facebook',"/auth/facebook" 

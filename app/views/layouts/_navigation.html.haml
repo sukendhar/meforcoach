@@ -1,0 +1,27 @@
+= link_to "Coachmee", root_path, :class => 'brand'
+%ul.nav
+  - if user_signed_in?
+    %li
+      = link_to('Logout', destroy_user_session_path, :method=>'delete')
+  - else
+    %li
+      = link_to('Login', new_user_session_path)
+  - if user_signed_in?
+    %li
+      = link_to('Edit account', edit_user_registration_path)
+  - else
+    %li
+      = link_to('Sign up', new_user_registration_path)
+  -#TODO I don't think these menu items should be in here. So far, there is only one thing that a Coachee can do at any stage of the process.
+    %li
+      = link_to('My Profile', edit_coachee_profile_path)
+    %li
+      = link_to("My Issues", coachee_issues_path)
+    %li
+      = link_to("New Issue", new_coachee_issue_path)
+    - if current_user.has_role? :admin
+      %li
+        = link_to('Admin', users_path)
+  - else
+    %li
+      = link_to('Sign up', new_user_registration_path)

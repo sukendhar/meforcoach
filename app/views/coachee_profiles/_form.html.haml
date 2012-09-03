@@ -1,0 +1,71 @@
+= form_for @coachee_profile do |f|
+  -if @coachee_profile.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@coachee_profile.errors.count, "error")} prohibited this coachee_profile from being saved:"
+      %ul
+        - @coachee_profile.errors.full_messages.each do |msg|
+          %li= msg
+
+
+  .profile_field
+    = f.label "name *"
+    = f.text_field :name
+
+  .profile_field
+    = f.label "age *"
+    Numeric scroll-box of age ranges e.g. <18, 18-25, 25-35 etc
+    %br
+    = f.select :age,["Under 18","18-25","25-35","35-45","45-55","55-65","Over 65"]
+  
+  .profile_field
+    = f.hidden_field :user_id,{:value=>current_user.id}
+  
+  .profile_field
+    = f.label :gender
+    = f.select :gender, ["Male","Female"]
+
+  .profile_field
+    = f.label "location *"
+    Can we fill this automatically and verify against Google map?
+    %br
+    = f.text_field :location
+  
+  .profile_field
+    = f.label :phone
+    Valid telephone number helper
+    %br
+    = f.text_field :phone
+  
+  .profile_field
+    = f.label :timezone
+    Can we deduce this?
+    %br
+    = f.text_field :timezone
+
+  .profile_field
+    = f.label :relationship_status
+    Like Facebook relationship statuses - can we auto-populate?
+    %br
+    = f.select :relationship_status,["Single","In a relationship","Married","It's complicated"]
+  
+  .profile_field
+    = f.label :available_time
+    = f.text_field :available_time
+  
+  .profile_field
+    = f.label :language
+    = f.text_field :language
+
+  .profile_field_check
+    = f.label "privacy_setting *"
+    %input{:type=>"checkbox", :value=>"I want to receive communications from my coach by email",:name=>"coachee_profile[privacy_setting]"}
+    I want to receive communications from my coach by email
+    %br 
+    %input{:type=>"checkbox", :value=>"I want to receive communications from my coach in my Coachmee inbox",:name=>"coachee_profile[privacy_setting]"}
+    I want to receive communications from my coach in my Coachmee inbox
+    %br 
+    %input{:type=>"checkbox", :value=>"I want to receive notification of new Coachmee messages by email",:name=>"coachee_profile[privacy_setting]"}
+    I want to receive notification of new Coachmee messages by email
+  
+  .actions
+    = f.submit 'Save'

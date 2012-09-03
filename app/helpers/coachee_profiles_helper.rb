@@ -1,0 +1,2 @@
+module CoacheeProfilesHelper
+end
